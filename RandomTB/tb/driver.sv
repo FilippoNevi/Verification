@@ -19,10 +19,10 @@ class driver;
     endfunction
 
     //Reset task, Reset the Interface signals to default/initial values
-    task reset;
-        wait(fsm_vif.reset);
+    task rst;
+        wait(fsm_vif.rst);
         $display("--------- [DRIVER] Reset Started ---------");
-        wait(!fsm_vif.reset);
+        wait(!fsm_vif.rst);
         $display("--------- [DRIVER] Reset Ended ---------");
     endtask
 
@@ -35,14 +35,15 @@ class driver;
         @(negedge fsm_vif.clk);
 
         //inject the inputs
-        fsm_vif.a=trans.a;
+        fsm_vif.coin_in=trans.coin_in;
+        fsm_vif.button_in=trans.button_in;
 
         no_transactions++;
     endtask
 
 
     task main;
-        wait(!fsm_vif.reset);
+        wait(!fsm_vif.rst);
         forever
             drive();
    endtask

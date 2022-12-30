@@ -31,7 +31,7 @@ class environment;
   endfunction
   
   task pre_test();
-    driv.reset();
+    driv.rst();
   endtask
   
   task test();

@@ -15,9 +15,9 @@ module tbench_top;
   always #5 clk =~clk;
   
   initial begin
-    reset = 1;
+    rst = 1;
     clk = 0;
-    #5 reset =0;
+    #5 rst =0;
   end
   
   /* Instantiate device under test
@@ -30,7 +30,7 @@ module tbench_top;
   */
          
   //creating an instance of interface to connect DUT and testcase
-  fsm_intf intf(clk,reset);
+  fsm_intf intf(clk,rst);
   
   //testcase instance, interface handle is passed to test as an argument
   test t1(intf);

@@ -3,7 +3,9 @@ program test(fsm_intf intf);
 
     class my_trans extends transaction;
         function void pre_randomize();
-            a.rand_mode(1);
+        	// a.rand_mode(1);
+            coin_in.rand_mode(1);
+            button_in.rand_mode(1);
         endfunction
     endclass
 
