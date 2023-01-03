@@ -1,0 +1,59 @@
+<harm>
+	<context name="default">
+
+		<numeric clsEffort="0.3" exp="_top::coin_in" loc="a"/>
+		<numeric clsEffort="0.3" exp="state" loc="a"/>
+		<prop exp="rst" loc="a"/>
+		<numeric clsEffort="0.3" exp="beverage_out" loc="a"/>
+		<numeric clsEffort="0.3" exp="c" loc="a"/>
+		<numeric clsEffort="0.3" exp="_top::button_in" loc="a"/>
+		<numeric clsEffort="0.3" exp="coin_in" loc="a"/>
+		<numeric clsEffort="0.3" exp="_top::beverage_out" loc="a"/>
+		<numeric clsEffort="0.3" exp="_top::change_out" loc="a"/>
+		<prop exp="_top::clk" loc="a"/>
+		<numeric clsEffort="0.3" exp="button_in" loc="a"/>
+		
+		<prop exp="_top::rst" loc="a"/>
+		<numeric clsEffort="0.3" exp="change_out" loc="a"/>
+		<numeric clsEffort="0.3" exp="_top::coin_in" loc="dt"/>
+		<numeric clsEffort="0.3" exp="state" loc="dt"/>
+		<prop exp="rst" loc="dt"/>
+		<numeric clsEffort="0.3" exp="beverage_out" loc="dt"/>
+		<numeric clsEffort="0.3" exp="c" loc="dt"/>
+		<numeric clsEffort="0.3" exp="_top::button_in" loc="dt"/>
+		<numeric clsEffort="0.3" exp="coin_in" loc="dt"/>
+		<numeric clsEffort="0.3" exp="_top::beverage_out" loc="dt"/>
+		<numeric clsEffort="0.3" exp="_top::change_out" loc="dt"/>
+		<prop exp="_top::clk" loc="dt"/>
+		<numeric clsEffort="0.3" exp="button_in" loc="dt"/>
+		<prop exp="_top::rst" loc="dt"/>
+		<numeric clsEffort="0.3" exp="change_out" loc="dt"/>
+		<numeric clsEffort="0.3" exp="_top::coin_in" loc="c"/>
+		<numeric clsEffort="0.3" exp="state" loc="c"/>
+		<prop exp="rst" loc="c"/>
+		<numeric clsEffort="0.3" exp="beverage_out" loc="c"/>
+		<numeric clsEffort="0.3" exp="c" loc="c"/>
+		<numeric clsEffort="0.3" exp="_top::button_in" loc="c"/>
+		<numeric clsEffort="0.3" exp="coin_in" loc="c"/>
+		<numeric clsEffort="0.3" exp="_top::beverage_out" loc="c"/>
+		<numeric clsEffort="0.3" exp="_top::change_out" loc="c"/>
+		<prop exp="_top::clk" loc="c"/>
+		<numeric clsEffort="0.3" exp="button_in" loc="c"/>
+		<prop exp="_top::rst" loc="c"/>
+		<numeric clsEffort="0.3" exp="change_out" loc="c"/>
+
+
+
+		<template dtLimits="3A,-0.1E" exp="G({..&&..}|-> X(P0))" /> 
+		<template dtLimits="3A,-0.1E,S" exp="G({..##1..}|-> X(P0))" /> 
+
+
+
+		<filter name="causality_filter" exp="1-afct/traceLength" threshold="0.90"/>
+		<sort name="causality" exp="1-afct/traceLength"/>
+		<sort name="frequency" exp="atct/traceLength"/>
+	</context>
+</harm>
+
+
+

@@ -1,0 +1,34 @@
+[*]
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Fri Dec 30 10:02:59 2022
+[*]
+[dumpfile] "/home/paolo/Scrivania/modeltech/SysVerLAB/Assignment_prev/fsm.vcd"
+[dumpfile_mtime] "Fri Dec 30 10:01:07 2022"
+[dumpfile_size] 3182
+[savefile] "/home/paolo/Scrivania/modeltech/SysVerLAB/Assignment_prev/fsm.gtkw"
+[timestart] 0
+[size] 2442 1489
+[pos] -1 -1
+*-6.508237 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] test.
+[sst_width] 378
+[signals_width] 398
+[sst_expanded] 1
+[sst_vpaned_height] 439
+@28
+test.beverage_out[1:0]
+test.button_in[1:0]
+@24
+test.change_out[15:0]
+@28
+test.clk
+@24
+test.coin_in[15:0]
+@28
+test.rst
+@24
+test.fsm.c[15:0]
+@28
+test.fsm.state[2:0]
+[pattern_trace] 1
+[pattern_trace] 0

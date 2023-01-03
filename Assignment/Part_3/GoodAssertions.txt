@@ -1,0 +1,129 @@
+NOTE: By putting the following constraint inside tb/transaction.sv,
+	  constraint coin_in_c { coin_in inside {16'd0, 16'd10, 16'd20, 16'd50};};
+	  the costumer's credit is such that it is possible to get the change back.
+	  This implies that change_out is different from zero with a higher probability than the case below.
+
+OUTPUT TB: 
+
+# ** Note: $finish    : tb//environment.sv(54)
+#    Time: 10 us  Iteration: 1  Instance: /tbench_top/t1
+# p0ATCT:          68
+# p1ATCT:          68
+# p2ATCT:          22
+# p3ATCT:           8
+# p4ATCT:         130
+# 
+# p0AFCT:           0
+# p1AFCT:           0
+# p2AFCT:         415
+# p3AFCT:           0
+# p4AFCT:         861
+# 
+# p0ATCF:           0
+# p1ATCF:           0
+# p2ATCF:           0
+# p3ATCF:           0
+# p4ATCF:           0
+# 
+# p0AFCF:         931
+# p1AFCF:         931
+# p2AFCF:         562
+# p3AFCF:         992
+# p4AFCF:           8
+# 
+# p0tot:         999
+# p1tot:         999
+# p2tot:         999
+# p3tot:        1000
+# p4tot:         999
+
+[INFO] 13:28:44 - Message: Filtered 200 assertions
+╔════╦══════════════════════════════════════════════════════════════════════════════════════════════╦═══════╦═══════════╦═══════════╗
+║ N  ║ Assertion (Context : default)                                                                ║ final ║ causality ║ frequency ║
+╠════╬══════════════════════════════════════════════════════════════════════════════════════════════╬═══════╬═══════════╬═══════════╣
+║ 0  ║ G({((state == 2))} |-> X((beverage_out == 3)))                                               ║ 1.00  ║ 1.00      ║ 1.00      ║
+║ 1  ║ G({((state == 1))} |-> X((beverage_out == 1)))                                               ║ 1.00  ║ 1.00      ║ 1.00      ║
+║ 2  ║ G({((state >= 1) && (state <= 3)) ##1 (change_out == 10)} |-> X((change_out == 10)))         ║ 0.00  ║ 0.99      ║ 0.04      ║
+║ 3  ║ G({(change_out == 0) ##1 (change_out == 10)} |-> X((change_out == 10)))                      ║ 0.00  ║ 0.99      ║ 0.04      ║
+║ 4  ║ G({((button_in == 3) && (change_out == 20))} |-> X((change_out == 20)))                      ║ 0.00  ║ 1.00      ║ 0.01      ║
+║ 5  ║ G({(coin_in == 50) ##1 (change_out == 20)} |-> X((change_out == 20)))                        ║ 0.00  ║ 1.00      ║ 0.01      ║
+║ 6  ║ G({(button_in == 0) ##1 (change_out == 20)} |-> X((change_out == 20)))                       ║ 0.00  ║ 1.00      ║ 0.01      ║
+║ 7  ║ G({((state >= 1) && (state <= 3)) ##1 (change_out == 20)} |-> X((change_out == 20)))         ║ 0.00  ║ 1.00      ║ 0.01      ║
+║ 8  ║ G({((button_in >= 0) && (button_in <= 1)) ##1 (change_out == 20)} |-> X((change_out == 20))) ║ 0.00  ║ 1.00      ║ 0.01      ║
+║ 9  ║ G({(coin_in == 0) ##2 (change_out == 20)} |-> X((change_out == 20)))                         ║ 0.00  ║ 1.00      ║ 0.01      ║
+║ 10 ║ G({((coin_in >= 0) && (coin_in <= 10)) ##2 (change_out == 20)} |-> X((change_out == 20)))    ║ 0.00  ║ 1.00      ║ 0.01      ║
+║ 11 ║ G({((coin_in >= 0) && (coin_in <= 20)) ##2 (change_out == 20)} |-> X((change_out == 20)))    ║ 0.00  ║ 1.00      ║ 0.01      ║
+║ 12 ║ G({(button_in == 1) ##2 (change_out == 20)} |-> X((change_out == 20)))                       ║ 0.00  ║ 1.00      ║ 0.01      ║
+║ 13 ║ G({((button_in == 3) && (change_out == 10))} |-> X((change_out == 10)))                      ║ 0.00  ║ 0.99      ║ 0.01      ║
+║ 14 ║ G({(coin_in == 10) ##1 (change_out == 10)} |-> X((change_out == 10)))                        ║ 0.00  ║ 0.99      ║ 0.01      ║
+║ 15 ║ G({(coin_in == 20) ##2 (change_out == 10)} |-> X((change_out == 10)))                        ║ 0.00  ║ 0.99      ║ 0.01      ║
+╚════╩══════════════════════════════════════════════════════════════════════════════════════════════╩═══════╩═══════════╩═══════════╝
+
+=========================================
+Time to mine: 2.197s
+Number of assertions: 16
+Trace length: 1000
+=========================================
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NOTE: By putting the following constraint inside tb/transaction.sv,
+	  constraint coin_in_c { coin_in inside {16'd0, 16'd10, 16'd20, 16'd50, 16'd100, 16'd200};};
+	  the costumer's credit will increase such that there is no possibility (low probability) to get the change back
+	  this implies that change_out stabilizes at zero.
+
+OUTPUT TB:
+# ** Note: $finish    : tb//environment.sv(54)
+#    Time: 10 us  Iteration: 1  Instance: /tbench_top/t1
+# p0ATCT:          59
+# p1ATCT:          60
+# p2ATCT:           3
+# p3ATCT:           0 <- !!!
+# p4ATCT:         119
+# 
+# p0AFCT:           0
+# p1AFCT:           0
+# p2AFCT:         520
+# p3AFCT:           0
+# p4AFCT:         880
+# 
+# p0ATCF:           0
+# p1ATCF:           0
+# p2ATCF:           0
+# p3ATCF:           0
+# p4ATCF:           0
+# 
+# p0AFCF:         940
+# p1AFCF:         939
+# p2AFCF:         476
+# p3AFCF:        1000
+# p4AFCF:           0
+# 
+# p0tot:         999
+# p1tot:         999
+# p2tot:         999
+# p3tot:        1000
+# p4tot:         999
+
+[INFO] 13:31:29 - Message: Filtered 242 assertions
+╔════╦════════════════════════════════════════════════════════════════════════════════════════════╦═══════╦═══════════╦═══════════╗
+║ N  ║ Assertion (Context : default)                                                              ║ final ║ causality ║ frequency ║
+╠════╬════════════════════════════════════════════════════════════════════════════════════════════╬═══════╬═══════════╬═══════════╣
+║ 0  ║ G({(((c >= 10160) && (c <= 20170)))} |-> X(((c >= 10360) && (c <= 20170))))                ║ 1.00  ║ 1.00      ║ 1.00      ║
+║ 1  ║ G({((c >= 10360) && (c <= 20170)) ##1 true} |-> X(((c >= 10360) && (c <= 20170))))         ║ 1.00  ║ 1.00      ║ 1.00      ║
+║ 2  ║ G({((c >= 10360) && (c <= 20170)) ##2 true} |-> X(((c >= 10360) && (c <= 20170))))         ║ 1.00  ║ 1.00      ║ 0.99      ║
+║ 3  ║ G({(((c >= 11320) && (c <= 19880)))} |-> X(((c >= 10360) && (c <= 20170))))                ║ 1.00  ║ 0.97      ║ 0.95      ║
+║ 4  ║ G({(((c >= 0) && (c <= 10140)))} |-> X(((c >= 0) && (c <= 10160))))                        ║ 0.99  ║ 1.00      ║ 0.78      ║
+║ 5  ║ G({(((c >= 80) && (c <= 9150)))} |-> X(((c >= 0) && (c <= 10160))))                        ║ 0.99  ║ 0.96      ║ 0.72      ║
+║ 6  ║ G({((state == 2))} |-> X((beverage_out == 3)))                                             ║ 0.00  ║ 1.00      ║ 0.11      ║
+║ 7  ║ G({((state == 1))} |-> X((beverage_out == 1)))                                             ║ 0.00  ║ 1.00      ║ 0.10      ║
+║ 8  ║ G({((c == 15640) && (coin_in == 100))} |-> X((beverage_out == 3)))                         ║ 0.00  ║ 0.94      ║ 0.00      ║
+║ 9  ║ G({((c == 15730) && (coin_in == 100))} |-> X((beverage_out == 3)))                         ║ 0.00  ║ 0.94      ║ 0.00      ║
+║ 10 ║ G({(button_in == 1) ##1 (coin_in == 200) ##1 (button_in == 1)} |-> X((beverage_out == 1))) ║ 0.00  ║ 0.93      ║ 0.00      ║
+╚════╩════════════════════════════════════════════════════════════════════════════════════════════╩═══════╩═══════════╩═══════════╝
+
+=========================================
+Time to mine: 2.567s
+Number of assertions: 11
+Trace length: 1000
+=========================================

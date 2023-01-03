@@ -1,0 +1,39 @@
+[*]
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Fri Dec 30 17:06:49 2022
+[*]
+[dumpfile] "/home/paolo/Scrivania/modeltech/SysVerLAB/Assignment/fsm.vcd"
+[dumpfile_mtime] "Fri Dec 30 17:06:27 2022"
+[dumpfile_size] 47049
+[savefile] "/home/paolo/Scrivania/modeltech/SysVerLAB/Assignment/fsm.gtkw"
+[timestart] 9855
+[size] 2442 1489
+[pos] -1 -1
+*-4.272609 10000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tbench_top.
+[sst_width] 462
+[signals_width] 587
+[sst_expanded] 1
+[sst_vpaned_height] 439
+@28
+tbench_top.intf.beverage_out[1:0]
+tbench_top.intf.button_in[1:0]
+@24
+tbench_top.intf.c[15:0]
+tbench_top.intf.change_out[15:0]
+@28
+tbench_top.intf.clk
+@24
+tbench_top.intf.coin_in[15:0]
+@28
+tbench_top.intf.rst
+tbench_top.intf.state[2:0]
+@24
+tbench_top.DUT.count_change[15:0]
+tbench_top.DUT.count_no_money[15:0]
+tbench_top.DUT.count_soda[15:0]
+tbench_top.DUT.count_water[15:0]
+@25
+tbench_top.DUT.count_no_change[15:0]
+[pattern_trace] 1
+[pattern_trace] 0
