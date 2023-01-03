@@ -4,6 +4,12 @@
 
 module Fsm (fsm_intf intf);
 
+reg[15:0] count_water = 16'd0;
+reg[15:0] count_soda = 16'd0;
+reg[15:0] count_no_money = 16'd0;
+reg[15:0] count_change = 16'd0;
+reg[15:0] count_no_change = 16'd0;
+
 localparam add_coin = 3'b000;
 localparam water = 3'b001;
 localparam soda = 3'b010;
@@ -33,18 +39,26 @@ always_ff @(posedge intf.clk or intf.rst) begin
 				else if(intf.coin_in == 16'd10 ||intf.coin_in == 16'd20 ||intf.coin_in == 16'd50 ||intf.coin_in == 16'd100 ||intf.coin_in == 16'd200) begin
 					intf.c <= intf.c + intf.coin_in;
 					intf.state <= add_coin;
+					if (intf.c < 16'd30) begin
+						count_no_money <= count_no_money + 1;
+					end
 				end
 				// The machine ignores every inadmissible input
 				else begin
 					intf.state <= add_coin;
+					if (intf.c < 16'd30) begin
+						count_no_money <= count_no_money + 1;
+					end
 				end
 			end
         	water: begin
+        		count_water <= count_water + 1;
         		intf.c <= intf.c - 16'd30;
         		intf.beverage_out <= 2'b01;
         		intf.state <= change;
         	end
         	soda: begin
+        		count_soda <= count_soda + 1;
         		intf.c <= intf.c - 16'd50;
         		intf.beverage_out <= 2'b11;
         		intf.state <= change;
@@ -56,9 +70,13 @@ always_ff @(posedge intf.clk or intf.rst) begin
 					intf.state <= credit0;
 				end else begin
 					intf.state <= add_coin;
+					if(intf.c >= 16'd30) begin
+						count_no_change = count_no_change + 1;
+					end
 				end
 			end
 			credit0: begin
+				count_change <= count_change + 1;
 				intf.c <= 16'd0;
 				intf.state <= add_coin;
 				intf.change_out <= 16'd0;
