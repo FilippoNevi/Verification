@@ -10,29 +10,29 @@ checker Ch1(clk, coin_in, button_in, state, c, change_out, beverage_out);
 
     clocking ch1_clocking @(posedge clk);
             property p0;													// p0ATCT
-				always(state==3'b001)|->(nexttime[1](beverage_out==2'b01));
+				always(state==3'b011)|->(nexttime[1](beverage_out==2'b01));
             endproperty
             property p0N_;													// p0AFCT
-				always(state!=3'b001)|->(nexttime[1](beverage_out==2'b01));
+				always(state!=3'b011)|->(nexttime[1](beverage_out==2'b01));
             endproperty
             property p0_N;													// p0ATCF
-				always(state==3'b001)|->(nexttime[1](beverage_out!=2'b01));
+				always(state==3'b011)|->(nexttime[1](beverage_out!=2'b01));
             endproperty
             property p0NN;													// p0AFCF
-				always(state!=3'b001)|->(nexttime[1](beverage_out!=2'b01));
+				always(state!=3'b011)|->(nexttime[1](beverage_out!=2'b01));
             endproperty
             
             property p1;													// p1ATCT
-				always(state==3'b010)|->nexttime[1](beverage_out==2'b11);          	
+				always(state==3'b100)|->nexttime[1](beverage_out==2'b11);          	
             endproperty
             property p1N_;													// p1AFCT
-				always(state!=3'b010)|->nexttime[1](beverage_out==2'b11);          	
+				always(state!=3'b100)|->nexttime[1](beverage_out==2'b11);          	
             endproperty
             property p1_N;													// p1ATCF
-				always(state==3'b010)|->nexttime[1](beverage_out!=2'b11);          	
+				always(state==3'b100)|->nexttime[1](beverage_out!=2'b11);          	
             endproperty
             property p1NN;													// p1AFCF
-				always(state!=3'b010)|->nexttime[1](beverage_out!=2'b11);          	
+				always(state!=3'b100)|->nexttime[1](beverage_out!=2'b11);          	
             endproperty
             
             property p2;													// p2ATCT
@@ -49,29 +49,29 @@ checker Ch1(clk, coin_in, button_in, state, c, change_out, beverage_out);
             endproperty
             
             property p3;													// p3ATCT
-				always(state == 3'b100)|->(change_out < 16'd30 && change_out > 16'd0);
+				always(state == 3'b110)|->(change_out < 16'd30 && change_out > 16'd0);
             endproperty
             property p3N_;													// p3AFCT
-				always(state != 3'b100)|->(change_out < 16'd30 && change_out > 16'd0);
+				always(state != 3'b110)|->(change_out < 16'd30 && change_out > 16'd0);
             endproperty
             property p3_N;													// p3ATCF
-				always(state == 3'b100)|->(change_out >= 16'd30 || change_out == 16'd0);
+				always(state == 3'b110)|->(change_out >= 16'd30 || change_out == 16'd0);
             endproperty
              property p3NN;													// p3AFCF
-				always(state != 3'b100)|->(change_out >= 16'd30 || change_out == 16'd0);
+				always(state != 3'b110)|->(change_out >= 16'd30 || change_out == 16'd0);
             endproperty
             
             property p4;													// p4ATCT
-				always(c >= 16'd30 && state == 3'b011)|->nexttime[1](change_out == 16'd0);     	
+				always(c >= 16'd30 && state == 3'b101)|->nexttime[1](change_out == 16'd0);     	
             endproperty
             property p4N_;													// p4AFCT
-				always((c >= 16'd0 && c < 16'd30) || state != 3'b011)|->nexttime[1](change_out == 16'd0);          	
+				always((c >= 16'd0 && c < 16'd30) || state != 3'b101)|->nexttime[1](change_out == 16'd0);          	
             endproperty
             property p4_N;													// p4ATCF
-				always(c >= 16'd30 && state == 3'b011)|->nexttime[1](change_out > 16'd0);    	
+				always(c >= 16'd30 && state == 3'b101)|->nexttime[1](change_out > 16'd0);    	
             endproperty
             property p4NN;													// p4AFCF
-				always((c >= 16'd0 && c < 16'd30) || state != 3'b011)|->nexttime[1](change_out > 16'd0);          	
+				always((c >= 16'd0 && c < 16'd30) || state != 3'b101)|->nexttime[1](change_out > 16'd0);          	
             endproperty
     endclocking
     

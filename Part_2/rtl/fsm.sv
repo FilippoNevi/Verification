@@ -4,13 +4,21 @@
 
 module Fsm (fsm_intf intf);
 
+// localparam add_coin = 3'b000;
+// localparam water = 3'b001;
+// localparam soda = 3'b010;
+// localparam change = 3'b011;
+// localparam credit0 = 3'b100;
+// localparam wait_water = 3'b101;
+// localparam wait_soda = 3'b110;
+
 localparam add_coin = 3'b000;
-localparam water = 3'b001;
-localparam soda = 3'b010;
-localparam change = 3'b011;
-localparam credit0 = 3'b100;
-localparam wait_water = 3'b101;
-localparam wait_soda = 3'b110;
+localparam wait_water = 3'b001;
+localparam wait_soda = 3'b010;
+localparam water = 3'b011;
+localparam soda = 3'b100;
+localparam change = 3'b101;
+localparam credit0 = 3'b110;
 
 always_ff @(posedge intf.clk or intf.rst) begin
     if(intf.rst)begin
@@ -39,6 +47,12 @@ always_ff @(posedge intf.clk or intf.rst) begin
 					intf.state <= add_coin;
 				end
 			end
+			wait_water: begin
+				#`N intf.state <= water;
+			end
+			wait_soda: begin
+				#`N intf.state <= soda;
+			end
         	water: begin
         		intf.c <= intf.c - 16'd30;
         		intf.beverage_out <= 2'b01;
@@ -62,12 +76,6 @@ always_ff @(posedge intf.clk or intf.rst) begin
 				intf.c <= 16'd0;
 				intf.state <= add_coin;
 				intf.change_out <= 16'd0;
-			end
-			wait_water: begin
-				#`N intf.state <= water;
-			end
-			wait_soda: begin
-				#`N intf.state <= soda;
 			end
     	endcase
     end

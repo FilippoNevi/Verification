@@ -14,13 +14,21 @@ reg[1:0] button_in;
 reg[15:0] change_out;
 reg[1:0] beverage_out;
 
+// localparam add_coin = 3'b000;
+// localparam water = 3'b001;
+// localparam soda = 3'b010;
+// localparam change = 3'b011;
+// localparam credit0 = 3'b100;
+// localparam wait_water = 3'b101;
+// localparam wait_soda = 3'b110;
+
 localparam add_coin = 3'b000;
-localparam water = 3'b001;
-localparam soda = 3'b010;
-localparam change = 3'b011;
-localparam credit0 = 3'b100;
-localparam wait_water = 3'b101;
-localparam wait_soda = 3'b110;
+localparam wait_water = 3'b001;
+localparam wait_soda = 3'b010;
+localparam water = 3'b011;
+localparam soda = 3'b100;
+localparam change = 3'b101;
+localparam credit0 = 3'b110;
 
 always_ff @(posedge clk or rst) begin
     if(rst)begin
@@ -49,6 +57,12 @@ always_ff @(posedge clk or rst) begin
 					state <= add_coin;
 				end
 			end
+			wait_water: begin
+				#`N state <= water;
+			end
+			wait_soda: begin
+				#`N state <= soda;
+			end
         	water: begin
         		c <= c - 16'd30;
         		beverage_out <= 2'b01;
@@ -72,12 +86,6 @@ always_ff @(posedge clk or rst) begin
 				c <= 16'd0;
 				state <= add_coin;
 				change_out <= 16'd0;
-			end
-			wait_water: begin
-				#`N state <= water;
-			end
-			wait_soda: begin
-				#`N state <= soda;
 			end
     	endcase
     end
