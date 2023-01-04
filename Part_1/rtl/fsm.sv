@@ -14,14 +14,6 @@ reg[1:0] button_in;
 reg[15:0] change_out;
 reg[1:0] beverage_out;
 
-// localparam add_coin = 3'b000;
-// localparam water = 3'b001;
-// localparam soda = 3'b010;
-// localparam change = 3'b011;
-// localparam credit0 = 3'b100;
-// localparam wait_water = 3'b101;
-// localparam wait_soda = 3'b110;
-
 localparam add_coin = 3'b000;
 localparam wait_water = 3'b001;
 localparam wait_soda = 3'b010;
